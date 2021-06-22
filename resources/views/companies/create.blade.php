@@ -1,0 +1,94 @@
+@extends('layout')
+
+@section('content')
+<div class="row clearfix">
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+		<div class="card">
+			<div class="header">
+                <h2>create companies</h2>
+			</div>
+
+			<div class="body">
+				<form class="form-horizontal" method="POST" action="{{ route('companies.store') }}" enctype="multipart/form-data">
+					{{ csrf_field() }}
+					<div class="form-group">
+						@if($errors->has('error'))
+							<span class="help-block text-center">
+								<strong>{{$errors->first()}}</strong>
+							</span>
+						@endif
+					<div>
+
+					<div class="form-group">
+						<label for="name" class="col-md-4 control-label">Company Name</label>
+						<div class="col-md-6">
+							<div class="form-line">
+								<input id="name" type="text" class="form-control" name="first_name" value="{{ old('first_name') }}" autofocus>
+							</div>
+							@if ($errors->has('first_name'))
+								<span class="help-block">
+									<strong>{{ $errors->first('first_name') }}</strong>
+								</span>
+							@endif
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="email" class="col-md-4 control-label">Email</label>
+						<div class="col-md-6">
+							<div class="form-line">
+								<input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}">
+							</div>
+							@if ($errors->has('email'))
+								<span class="help-block">
+									<strong>{{ $errors->first('email') }}</strong>
+								</span>
+							@endif
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="logo" class="col-md-4 control-label">Logo</label>
+						<div class="col-md-6">
+							<div class="form-line">
+								<input id="logo" type="file" name="logo" multiple>
+							</div>
+							@if ($errors->has('logo'))
+								<span class="help-block">
+									<strong>{{ $errors->first('logo') }}</strong>
+								</span>
+							@endif
+						</div>
+					</div>
+
+					 <div class="form-group">
+						<label for="website" class="col-md-4 control-label">Website</label>
+
+						<div class="col-md-6">
+							<div class="form-line">
+								<input id="website" type="text" class="form-control" name="website" value="{{ old('website') }}">
+							</div>
+							@if ($errors->has('website'))
+								<span class="help-block">
+									<strong>{{ $errors->first('website') }}</strong>
+								</span>
+							@endif
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-md-6 col-md-offset-4">
+							<a href="{{ route('companies.index') }}" type="submit" class="btn btn-info">
+								Back
+							</a>
+							<button type="submit" class="btn btn-primary">
+								Add
+							</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+@endsection
